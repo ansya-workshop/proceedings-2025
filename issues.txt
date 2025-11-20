@@ -1,11 +1,11 @@
-- paper4 missing GenAI declaration
-- paper6 missing GenAI declaration
-- paper12 missing copyright
-- paper17 missing GenAI declaration
-- paper18 wrong format, missing GenAI declaration
-- paper20 missing GenAI declaration
-- paper22 GenAI declaration not compliant to template
-- paper23 missing GenAI declaration
-- paper26 missing GenAI declaration
-- paper28 missing paper and copyright
-- paper30 missing GenAI declaration
+- [x] paper4 missing GenAI declaration
+- [x] paper6 missing GenAI declaration
+- [ ] paper12 missing copyright
+- [x] paper17 missing GenAI declaration
+- [x] paper18 wrong format, missing GenAI declaration
+- [ ] paper20 missing GenAI declaration
+- [x] paper22 GenAI declaration not compliant to template
+- [x] paper23 missing GenAI declaration
+- [x] paper26 missing GenAI declaration
+- [x] paper28 missing paper and copyright
+- [x] paper30 missing GenAI declaration
