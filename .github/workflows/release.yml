@@ -1,0 +1,54 @@
+name: Create Release
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+
+jobs:
+  create-release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Generate version tag
+        id: version
+        run: |
+          VERSION=$(date -u +"%Y.%m.%d-%H.%M.%S")
+          echo "tag=$VERSION" >> $GITHUB_OUTPUT
+          echo "Generated version: $VERSION"
+      
+      - name: Create site.zip
+        run: |
+          zip -r site.zip paper_*.pdf index.html
+      
+      - name: Create copyrights.zip
+        run: |
+          zip -r copyrights.zip copyright_*.pdf
+      
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.version.outputs.tag }}
+          name: Release ${{ steps.version.outputs.tag }}
+          body: |
+            Automated release for ANSyA 2025 proceedings
+            
+            **Contents:**
+            - `site.zip`: All paper PDFs and index.html
+            - `copyrights.zip`: All copyright forms
+            
+            Generated on: ${{ steps.version.outputs.tag }}
+          files: |
+            site.zip
+            copyrights.zip
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
