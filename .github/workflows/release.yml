@@ -23,6 +23,10 @@ jobs:
           VERSION=$(date -u +"%Y.%m.%d-%H.%M.%S")
           echo "tag=$VERSION" >> $GITHUB_OUTPUT
           echo "Generated version: $VERSION"
+
+      - name: Update date in index.html
+        run: |
+          sed -i -e "s/YYYY-MM-DD/$(date +'%Y-%m-%d')/g" index.html 
       
       - name: Create site.zip
         run: |
