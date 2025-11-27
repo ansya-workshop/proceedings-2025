@@ -4,7 +4,12 @@ function count_pages {
     PAGES=`pdfinfo $1 | grep Pages: | awk '{print $2}'`
     END=`expr $CURRENT + $PAGES - 1`
     # echo "<span class=\"CEURPAGES\">$CURRENT–$END</span>"
-    echo "$1: $CURRENT–$END"
+    # SHORT_LONG='short' if $PAGES < 7 else 'regular' 
+    SHORT_LONG='short'
+    if [ $PAGES -ge 7 ]; then
+        SHORT_LONG='regular'
+    fi
+    echo "$1: $CURRENT–$END ($PAGES pages -> $SHORT_LONG paper)"
     CURRENT=`expr $END + 1`
 }
 
